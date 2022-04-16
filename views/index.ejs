@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rob + Kaitlyn</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="./css/tailwind-full.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./images/travel.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-box font-poppins">
+  
+    <!-- Nav -->
+    <header class="w-full justify-center items-center text-center mt-10 px-10 text-2xl py-4 font-poppins mb-4">
+      <div class="font-poppins font-bold text-5xl text-bold sm:text-7xl 2xl:text-8xl text-violet-600">Rob and Kaitlyn's Life List</div>
+    </header>
+
+    <div class="flex justify-center align-center">
+      <hr class="border-b-4 border-t-0 border-dotted border-white mb-16 mt-8 w-24">
+    </div>
+
+
+    <!-- Card Container -->
+    <div class="px-4 sm:px-0 sm:mx-4 md:px-10 flex overflow-x-scroll sm:flex-wrap sm:overflow-auto justify-start sm:justify-center gap-12 sm:gap-4 pb-4 mb-24">
+
+      <!-- RESTAURANTS -->
+      <div class="px-6 py-6 min-w-full sm:min-w-0 sm:w-80 flex flex-col bg-opacity-20 bg-white rounded-3xl backdrop-filter shadow-lg ">
+        <div class="flex justify-center">
+          <img class="h-12" src="../images/restaurant.png"/>
+        </div>
+        
+        <!-- Card Title -->
+        <div class="font-semibold text-xl text-center my-2">
+          Restaurants
+        </div>
+
+        <!-- Surprise me button -->
+        <button id="rest-button" class="bg-violet-600 text-md rounded-xl p-2 mt-4 w-full hover:bg-violet-900 text-white">Surprise Me!</button>
+
+        <!-- Add new button -->
+        <div class="border-white text-sm sm:text-base py-1 sm:py-0 border-2 border-opacity-50 flex flex-nowrap justify-between items-center rounded-xl mt-4">
+          <form action="/rest" method="post" class="" autocomplete="off">
+            <input type="text" placeholder="Add Restaurant" name="newItem" class="bg-transparent placeholder-white py-1 border-0 no-focus ml-2" required >
+            <button type="submit" class="hidden sm:inline-block rounded-xl font-light py-1 px-2 hover:text-violet-600">Add</button>
+          </form>
+        </div>
+        
+        <!-- Card Item -->
+        <% tripItems.forEach(function(listItem){ %>
+          <% if(listItem.category === "rest" & listItem.checked === true) { %>
+          <div class="flex-col justify-start opacity-50">
+            <div class="flex items-center justify-between my-2">
+              <div class="text-opacity-50"><%=listItem.item%></div>
+              <div class="flex">
+                <form action="/delete" method="post">
+                  <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                  <button class="h-4 w-4 my-2 mr-3">
+                  <img class="" src="../images/delete.png">
+                  </button>
+                </form>
+                <form action="/check" method="post">
+                  <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                  <button class="h-6 w-6 my-1">
+                  <img class="" src="../images/checked.png">
+                  </button>
+                </form>
+              </div>
+            </div>
+            <hr class="border-1 border-white border-opacity-50"></hr>
+          </div>
+        <% } else if(listItem.category === "rest") { %>
+        <div class="flex-col justify-start">
+          <div class="flex items-center justify-between my-2">
+            <div class="rest-item "><%=listItem.item%></div>
+            <div class="flex">
+              <form action="/delete" method="post">
+                <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                <button class="h-4 w-4 my-2 mr-3">
+                <img class="" src="../images/delete.png">
+                </button>
+              </form>
+              <form action="/check" method="post">
+                <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                <button class="h-6 w-6 my-1">
+                <img class="" src="../images/unchecked.png">
+                </button>
+              </form>
+            </div>
+          </div>
+          <hr class="border-1 border-white border-opacity-50"></hr>
+        </div>
+        <% } %>
+        <% }) %>
+        
+
+      </div>
+
+      <!-- ACTIVITIES -->
+      <div class="px-6 py-6 min-w-full sm:min-w-0 sm:w-80 bg-white flex flex-col bg-opacity-20 rounded-3xl backdrop-filter backdrop-blur-lg shadow-lg">
+        <div class="flex justify-center">
+          <img class="h-12" src="../images/activity.png"/>
+        </div>
+        
+        <!-- Card Title -->
+        <div class="font-semibold text-xl text-center my-2">
+          Things To Do
+        </div>
+
+        <!-- Surprise me button -->
+        <button id="act-button" class="bg-violet-600 text-white text-md rounded-xl p-2 mt-4 w-full hover:bg-violet-900">Surprise Me!</button>
+
+        <!-- Add new button -->
+        <div class="border-white-600 text-sm sm:text-base py-1 sm:py-0  border-2 border-opacity-50 flex flex-nowrap justify-between items-center rounded-xl mt-4">
+          <form action="/act" method="post" autocomplete="off">
+            <input type="text" placeholder="New Activity" name="newItem" class="bg-transparent placeholder-white py-1 border-0 no-focus ml-2" required >
+            <button type="submit" class="hidden sm:inline-block rounded-xl font-light py-1 px-2 hover:text-violet-800">Add</button>
+          </form>
+        </div>
+        
+        <!-- Card Item -->
+        <% tripItems.forEach(function(listItem){ %>
+          <% if(listItem.category === "act" & listItem.checked === true) { %>
+          <div class="flex-col justify-start opacity-50">
+            <div class="flex items-center justify-between my-2">
+              <div class="text-opacity-50"><%=listItem.item%></div>
+              <div class="flex">
+                <form action="/delete" method="post">
+                  <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                  <button class="h-4 w-4 my-2 mr-3">
+                  <img class="" src="../images/delete.png">
+                  </button>
+                </form>
+                <form action="/check" method="post">
+                  <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                  <button class="h-6 w-6 my-1">
+                  <img class="" src="../images/checked.png">
+                  </button>
+                </form>
+              </div>
+            </div>
+            <hr class="border-1 border-white border-opacity-50"></hr>
+          </div>
+        <% } else if(listItem.category === "act") { %>
+        <div class="flex-col justify-start">
+          <div class="flex items-center justify-between my-2">
+            <div class="act-item "><%=listItem.item%></div>
+            <div class="flex">
+              <form action="/delete" method="post">
+                <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                <button class="h-4 w-4 my-2 mr-3">
+                <img class="" src="../images/delete.png">
+                </button>
+              </form>
+              <form action="/check" method="post">
+                <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                <button class="h-6 w-6 my-1">
+                <img class="" src="../images/unchecked.png">
+                </button>
+              </form>
+            </div>
+          </div>
+          <hr class="border-1 border-white border-opacity-50"></hr>
+        </div>
+        <% } %>
+        <% }) %>
+        
+
+      </div>
+
+      <!-- WEEKEND TRIPS -->
+      <div class="px-6 py-6 min-w-full sm:min-w-0 sm:w-80 bg-white flex flex-col bg-opacity-20 rounded-3xl backdrop-filter backdrop-blur-lg shadow-lg">
+        <div class="flex justify-center">
+          <img class="h-12" src="../images/travel.png"/>
+        </div>
+        
+        <!-- Card Title -->
+        <div class="font-semibold text-xl text-center my-2">
+          Travel
+        </div>
+
+        <!-- Surprise me button -->
+        <button id="trip-button" class="bg-violet-600 text-white text-md rounded-xl p-2 mt-4 w-full hover:bg-violet-900">Surprise Me!</button>
+
+        <!-- Add new button -->
+        <div class="border-white text-sm sm:text-base py-1 sm:py-0 border-2 border-opacity-50 flex justify-between items-center flex-nowrap rounded-xl mt-4">
+          <form action="/trip" method="post" class="" autocomplete="off">
+            <input type="text" placeholder="New Trip" name="newItem" class="bg-transparent placeholder-white py-1 border-0 no-focus ml-2" required >
+            <button type="submit" class="hidden sm:inline-block rounded-xl font-light py-1 px-1 hover:text-violet-800">Add</button>
+          </form>
+        </div>
+        
+        
+        <!-- Card Item -->
+        <% tripItems.forEach(function(listItem){ %>
+          <% if(listItem.category === "trip" & listItem.checked === true) { %>
+          <div class="flex-col justify-start opacity-50">
+            <div class="flex items-center justify-between my-2">
+              <div class="text-opacity-50"><%=listItem.item%></div>
+              <div class="flex">
+                <form action="/delete" method="post">
+                  <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                  <button class="h-4 w-4 my-2 mr-3">
+                  <img class="" src="../images/delete.png">
+                  </button>
+                </form>
+                <form action="/check" method="post">
+                  <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                  <button class="h-6 w-6 my-1">
+                  <img class="" src="../images/checked.png">
+                  </button>
+                </form>
+              </div>
+            </div>
+            <hr class="border-1 border-white border-opacity-50"></hr>
+          </div>
+        <% } else if(listItem.category === "trip") { %>
+        <div class="flex-col justify-start">
+          <div class="flex items-center justify-between my-2">
+            <div class="trip-item "><%=listItem.item%></div>
+            <div class="flex">
+              <form action="/delete" method="post">
+                <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                <button class="h-4 w-4 my-2 mr-3">
+                <img class="" src="../images/delete.png">
+                </button>
+              </form>
+              <form action="/check" method="post">
+                <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                <button class="h-6 w-6 my-1">
+                <img class="" src="../images/unchecked.png">
+                </button>
+              </form>
+            </div>
+          </div>
+          <hr class="border-1 border-white border-opacity-50"></hr>
+        </div>
+        <% } %>
+        <% }) %>
+        
+        
+      </div>
+
+      <!-- MOVIES -->
+      <div class="px-6 py-6 min-w-full sm:min-w-0 sm:w-80 bg-white flex flex-col bg-opacity-20 rounded-3xl backdrop-filter backdrop-blur-lg shadow-lg">
+        <div class="flex justify-center">
+          <img class="h-12" src="../images/movie.png"/>
+        </div>
+        
+        <!-- Card Title -->
+        <div class="font-semibold text-xl text-center my-2">
+          Movies
+        </div>
+
+        <!-- Surprise me button -->
+        <button id="movie-button" class="bg-violet-600 text-white text-md rounded-xl p-2 mt-4 w-full hover:bg-violet-900">Surprise Me!</button>
+
+        <!-- Add new button -->
+        <div class="border-white text-sm sm:text-base py-1 sm:py-0 border-2 border-opacity-50 flex justify-between items-center flex-nowrap rounded-xl mt-4">
+          <form action="/movie" method="post" class="" autocomplete="off">
+            <input type="text" placeholder="New Movie" name="newItem" class="bg-transparent placeholder-white py-1 border-0 no-focus ml-2" required >
+            <button type="submit" class="hidden sm:inline-block rounded-xl font-light py-1 px-1 hover:text-violet-800">Add</button>
+          </form>
+        </div>
+        
+        
+        <!-- Card Item -->
+        <% tripItems.forEach(function(listItem){ %>
+          <% if(listItem.category === "movie" & listItem.checked === true) { %>
+          <div class="flex-col justify-start opacity-50">
+            <div class="flex items-center justify-between my-2">
+              <div class="text-opacity-50"><%=listItem.item%></div>
+              <div class="flex">
+                <form action="/delete" method="post">
+                  <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                  <button class="h-4 w-4 my-2 mr-3">
+                  <img class="" src="../images/delete.png">
+                  </button>
+                </form>
+                <form action="/check" method="post">
+                  <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                  <button class="h-6 w-6 my-1">
+                  <img class="" src="../images/checked.png">
+                  </button>
+                </form>
+              </div>
+            </div>
+            <hr class="border-1 border-white border-opacity-50"></hr>
+          </div>
+        <% } else if(listItem.category === "movie") { %>
+        <div class="flex-col justify-start">
+          <div class="flex items-center justify-between my-2">
+            <div class="movie-item "><%=listItem.item%></div>
+            <div class="flex">
+              <form action="/delete" method="post">
+                <input type="hidden" name="deleteItemName" value="<%=listItem.item%>">
+                <button class="h-4 w-4 my-2 mr-3">
+                <img class="" src="../images/delete.png">
+                </button>
+              </form>
+              <form action="/check" method="post">
+                <input type="hidden" name="checkItemName" value="<%=listItem.item%>">
+                <button class="h-6 w-6 my-1">
+                <img class="" src="../images/unchecked.png">
+                </button>
+              </form>
+            </div>
+          </div>
+          <hr class="border-1 border-white border-opacity-50"></hr>
+        </div>
+        <% } %>
+        <% }) %>
+        
+        
+      </div>
+
+    </div>
+
+    <div class="flex justify-center align-center">
+      <a href="https://pbs.twimg.com/media/BG48ENgCEAAIDl9.jpg">
+        <img class="w-64 rounded-full shadow-lg mb-24" src="../images/robkaitlyn.jpg"/>
+      </a>
+    </div>
+
+    <script src="./js/app.js"></script>
+
+  </body>
+
+</html>
