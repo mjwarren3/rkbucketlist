@@ -22430,6 +22430,15 @@ video {
   font-family: Poppins, sans-serif;
 }
 
+.font-brush {
+  font-family: Square Peg, sans-serif;
+}
+
+.font-brush {
+  font-family: Square Peg, sans-serif;
+  font-weight: 400;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
