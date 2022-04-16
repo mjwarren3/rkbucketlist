@@ -32,7 +32,7 @@ form {
 }
 
 .font-brush {
-  font-family: Square Peg, san-serif;
+  font-family: 'Square Peg', cursive;
 }
 
 .no-focus {
@@ -22431,11 +22431,11 @@ video {
 }
 
 .font-brush {
-  font-family: Square Peg, sans-serif;
+  font-family: 'Square Peg', cursive;
 }
 
 .font-brush {
-  font-family: Square Peg, sans-serif;
+  font-family: 'Square Peg'; cursive;
   font-weight: 400;
 }
 
